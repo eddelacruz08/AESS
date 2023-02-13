@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Attendance));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblAttendId = new System.Windows.Forms.Label();
             this.lblEventDescription = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -54,7 +55,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtAttendName = new System.Windows.Forms.TextBox();
-            this.lblAttendId = new System.Windows.Forms.Label();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblEventStatus = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAttendView)).BeginInit();
@@ -64,6 +67,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.DarkGreen;
+            this.panel1.Controls.Add(this.lblEventStatus);
+            this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.lblAttendId);
             this.panel1.Controls.Add(this.lblEventDescription);
             this.panel1.Controls.Add(this.label8);
@@ -77,6 +82,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(925, 106);
             this.panel1.TabIndex = 1;
+            // 
+            // lblAttendId
+            // 
+            this.lblAttendId.AutoSize = true;
+            this.lblAttendId.Location = new System.Drawing.Point(895, 26);
+            this.lblAttendId.Name = "lblAttendId";
+            this.lblAttendId.Size = new System.Drawing.Size(18, 13);
+            this.lblAttendId.TabIndex = 8;
+            this.lblAttendId.Text = "ID";
+            this.lblAttendId.Visible = false;
             // 
             // lblEventDescription
             // 
@@ -191,15 +206,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvAttendView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvAttendView.Location = new System.Drawing.Point(364, 133);
+            this.dgvAttendView.Location = new System.Drawing.Point(438, 133);
             this.dgvAttendView.Name = "dgvAttendView";
             this.dgvAttendView.ReadOnly = true;
-            this.dgvAttendView.Size = new System.Drawing.Size(549, 305);
+            this.dgvAttendView.Size = new System.Drawing.Size(475, 305);
             this.dgvAttendView.TabIndex = 3;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnAddStudent);
             this.groupBox1.Controls.Add(this.cbAttendStatus);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.cbAttendCourse);
@@ -210,15 +224,15 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtAttendName);
-            this.groupBox1.Location = new System.Drawing.Point(12, 124);
+            this.groupBox1.Location = new System.Drawing.Point(12, 128);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(335, 314);
+            this.groupBox1.Size = new System.Drawing.Size(311, 238);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             // 
             // btnAddStudent
             // 
-            this.btnAddStudent.Location = new System.Drawing.Point(119, 234);
+            this.btnAddStudent.Location = new System.Drawing.Point(340, 213);
             this.btnAddStudent.Name = "btnAddStudent";
             this.btnAddStudent.Size = new System.Drawing.Size(81, 30);
             this.btnAddStudent.TabIndex = 10;
@@ -235,7 +249,7 @@
             "LATE",
             "EXCUSE",
             "ABSENT"});
-            this.cbAttendStatus.Location = new System.Drawing.Point(92, 183);
+            this.cbAttendStatus.Location = new System.Drawing.Point(83, 183);
             this.cbAttendStatus.Name = "cbAttendStatus";
             this.cbAttendStatus.Size = new System.Drawing.Size(121, 21);
             this.cbAttendStatus.TabIndex = 9;
@@ -243,7 +257,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 186);
+            this.label6.Location = new System.Drawing.Point(22, 186);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 13);
             this.label6.TabIndex = 8;
@@ -262,7 +276,7 @@
             "BSA",
             "DICT",
             "DMET"});
-            this.cbAttendCourse.Location = new System.Drawing.Point(92, 144);
+            this.cbAttendCourse.Location = new System.Drawing.Point(83, 144);
             this.cbAttendCourse.Name = "cbAttendCourse";
             this.cbAttendCourse.Size = new System.Drawing.Size(121, 21);
             this.cbAttendCourse.TabIndex = 7;
@@ -270,7 +284,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 147);
+            this.label5.Location = new System.Drawing.Point(22, 147);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 6;
@@ -286,7 +300,7 @@
             "3",
             "4",
             "5"});
-            this.cbAttendSection.Location = new System.Drawing.Point(92, 107);
+            this.cbAttendSection.Location = new System.Drawing.Point(83, 107);
             this.cbAttendSection.Name = "cbAttendSection";
             this.cbAttendSection.Size = new System.Drawing.Size(121, 21);
             this.cbAttendSection.TabIndex = 5;
@@ -294,7 +308,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 110);
+            this.label4.Location = new System.Drawing.Point(19, 110);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 4;
@@ -310,7 +324,7 @@
             "3",
             "4",
             "5"});
-            this.cbAttendYear.Location = new System.Drawing.Point(92, 71);
+            this.cbAttendYear.Location = new System.Drawing.Point(83, 71);
             this.cbAttendYear.Name = "cbAttendYear";
             this.cbAttendYear.Size = new System.Drawing.Size(121, 21);
             this.cbAttendYear.TabIndex = 3;
@@ -318,7 +332,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 74);
+            this.label3.Location = new System.Drawing.Point(33, 74);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(32, 13);
             this.label3.TabIndex = 2;
@@ -327,7 +341,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(19, 38);
+            this.label2.Location = new System.Drawing.Point(10, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 1;
@@ -335,27 +349,51 @@
             // 
             // txtAttendName
             // 
-            this.txtAttendName.Location = new System.Drawing.Point(92, 35);
+            this.txtAttendName.Location = new System.Drawing.Point(83, 35);
             this.txtAttendName.Name = "txtAttendName";
             this.txtAttendName.Size = new System.Drawing.Size(214, 20);
             this.txtAttendName.TabIndex = 0;
             // 
-            // lblAttendId
+            // btnExportExcel
             // 
-            this.lblAttendId.AutoSize = true;
-            this.lblAttendId.Location = new System.Drawing.Point(895, 26);
-            this.lblAttendId.Name = "lblAttendId";
-            this.lblAttendId.Size = new System.Drawing.Size(18, 13);
-            this.lblAttendId.TabIndex = 8;
-            this.lblAttendId.Text = "ID";
-            this.lblAttendId.Visible = false;
+            this.btnExportExcel.Location = new System.Drawing.Point(338, 255);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(86, 30);
+            this.btnExportExcel.TabIndex = 11;
+            this.btnExportExcel.Text = "Export to Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label10.Location = new System.Drawing.Point(462, 77);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(53, 15);
+            this.label10.TabIndex = 9;
+            this.label10.Text = "Status:";
+            // 
+            // lblEventStatus
+            // 
+            this.lblEventStatus.AutoSize = true;
+            this.lblEventStatus.Font = new System.Drawing.Font("Arial Rounded MT Bold", 10, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventStatus.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblEventStatus.Location = new System.Drawing.Point(517, 76);
+            this.lblEventStatus.Name = "lblEventStatus";
+            this.lblEventStatus.Size = new System.Drawing.Size(0, 17);
+            this.lblEventStatus.TabIndex = 10;
+            this.lblEventStatus.Visible = true;
             // 
             // Attendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(925, 450);
+            this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.btnAddStudent);
             this.Controls.Add(this.dgvAttendView);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
@@ -398,5 +436,8 @@
         private System.Windows.Forms.TextBox txtAttendName;
         private System.Windows.Forms.Label lblEventDescription;
         private System.Windows.Forms.Label lblAttendId;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Label lblEventStatus;
+        private System.Windows.Forms.Label label10;
     }
 }

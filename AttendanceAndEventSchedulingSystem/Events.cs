@@ -37,14 +37,6 @@ namespace AttendanceAndEventSchedulingSystem
             InitializeComponent();
             Display_EventList();
         }
-        private void ClearData()
-        {
-            txtEventName.Text = "";
-            txtDescription.Text = "";
-            txtLocation.Text = "";
-            cbStatus.Text = "";
-            dtpSchedule.Value = DateTime.Today;
-        }
         public void Display_EventList() {
             MySqlDataAdapter adapter;
             DataTable table;
@@ -178,7 +170,6 @@ namespace AttendanceAndEventSchedulingSystem
                         dtpEndHour.Text = "";
                         btnUpdateEvent.Enabled = false;
                         btnDeleteEvent.Enabled = false;
-                        btnViewEvent.Enabled = false;
                     }
                     else
                     {
@@ -286,7 +277,6 @@ namespace AttendanceAndEventSchedulingSystem
                         btnAddEvent.Enabled = true;
                         btnUpdateEvent.Enabled = false;
                         btnDeleteEvent.Enabled = false; 
-                        btnViewEvent.Enabled = false;
 
                     }
                     else
@@ -336,7 +326,6 @@ namespace AttendanceAndEventSchedulingSystem
                         btnAddEvent.Enabled = true;
                         btnUpdateEvent.Enabled = false;
                         btnDeleteEvent.Enabled = false;
-                        btnViewEvent.Enabled = false;
 
                     }
                     else
@@ -354,13 +343,6 @@ namespace AttendanceAndEventSchedulingSystem
                     Display_EventList();
                 }
             }
-        }
-
-        private void btnViewEvent_Click(object sender, EventArgs e)
-        {
-            btnViewEvent.Enabled = false;
-            Attendance attendance = new Attendance(txtId.Text, txtEventName.Text, txtDescription.Text);
-            attendance.Show();
         }
 
         private void dgvEventList_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -386,10 +368,40 @@ namespace AttendanceAndEventSchedulingSystem
                 Attendance attendance = new Attendance(
                     selectedDGVRow.Cells[0].Value.ToString(),
                     selectedDGVRow.Cells[1].Value.ToString(),
-                    selectedDGVRow.Cells[2].Value.ToString()
+                    selectedDGVRow.Cells[2].Value.ToString(),
+                    selectedDGVRow.Cells[7].Value.ToString()
                     );
                 attendance.Show();
              }
+        }
+
+        private void btnExportEventList_Click(object sender, EventArgs e)
+        {
+            if (dgvEventList.Rows.Count > 0)
+            {
+
+                Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+                xcelApp.Application.Workbooks.Add(Type.Missing);
+
+                for (int i = 1; i < dgvEventList.Columns.Count + 1; i++)
+                {
+                    xcelApp.Cells[1, i] = dgvEventList.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < dgvEventList.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgvEventList.Columns.Count; j++)
+                    {
+                        xcelApp.Cells[i + 2, j + 1] = dgvEventList.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                xcelApp.Columns.AutoFit();
+                xcelApp.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Empty fields!");
+            }
         }
     }
 }

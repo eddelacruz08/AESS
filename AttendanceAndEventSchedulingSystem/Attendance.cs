@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using static System.Net.Mime.MediaTypeNames;
+using Syncfusion.XlsIO;
+using System.Reflection;
 
 namespace AttendanceAndEventSchedulingSystem
 {
@@ -19,14 +23,34 @@ namespace AttendanceAndEventSchedulingSystem
         string addStudentString = "INSERT INTO `attendance_list` (`event_id`,`full_name`,`year`,`section`,`course`,`student_status`) " +
             "VALUES (@event_id, @full_name, @year, @section, @course, @student_status)";
 
-        public Attendance(string id = null, string name = null, string description = null)
+        public Attendance(string id = null, string name = null, string description = null, string status = null)
         {
             InitializeComponent();
+            if (status == "Ongoing")
+            {
+                txtAttendName.Enabled = true;
+                cbAttendYear.Enabled = true;
+                cbAttendSection.Enabled = true;
+                cbAttendStatus.Enabled = true;
+                cbAttendCourse.Enabled = true;
+                btnAddStudent.Enabled = true;
+            }
+            else
+            {
+                txtAttendName.Enabled = false;
+                cbAttendYear.Enabled = false;
+                cbAttendSection.Enabled = false;
+                cbAttendStatus.Enabled = false;
+                cbAttendCourse.Enabled = false;
+                btnAddStudent.Enabled = false;
+            }
             lblAttendId.Text = id;
             lblEventTitle.Text = name;
             lblEventDescription.Text = description;
-            label9.Visible = true;  
+            lblEventStatus.Text = status;
+            label9.Visible = true;
             label8.Visible = true;
+            label10.Visible = true;
             string retrieveAttendanceDataString = "SELECT id, full_name, year, section, " +
                 "course, student_status, created_at FROM attendance_list WHERE event_id = "+ id;
 
@@ -48,7 +72,7 @@ namespace AttendanceAndEventSchedulingSystem
                 dgvAttendView.Columns[0].Name = "id";
                 dgvAttendView.Columns[0].HeaderText = "Id";
                 dgvAttendView.Columns[0].DataPropertyName = "id";
-                dgvAttendView.Columns[0].Width = 20;
+                dgvAttendView.Columns[0].Width = 30;
 
                 dgvAttendView.Columns[1].Name = "full_name";
                 dgvAttendView.Columns[1].HeaderText = "Full Name";
@@ -166,6 +190,35 @@ namespace AttendanceAndEventSchedulingSystem
                         );
                     attendance.Show();
                 }
+            }
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            if (dgvAttendView.Rows.Count > 0)
+            {
+
+                Microsoft.Office.Interop.Excel.Application xcelApp = new Microsoft.Office.Interop.Excel.Application();
+                xcelApp.Application.Workbooks.Add(Type.Missing);
+
+                for (int i = 1; i < dgvAttendView.Columns.Count + 1; i++)
+                {
+                    xcelApp.Cells[1, i] = dgvAttendView.Columns[i - 1].HeaderText;
+                }
+
+                for (int i = 0; i < dgvAttendView.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgvAttendView.Columns.Count; j++)
+                    {
+                        xcelApp.Cells[i + 2, j + 1] = dgvAttendView.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                xcelApp.Columns.AutoFit();
+                xcelApp.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Empty fields!\r\nMake sure that the event is ongoing or done to generate report.");
             }
         }
     }

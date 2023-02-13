@@ -73,6 +73,36 @@ namespace AttendanceAndEventSchedulingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_keepass_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-keepass-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_male_user_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-male-user-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_user_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-user-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Oxygen_Icons_org_Oxygen_Apps_preferences_contact_list_256 {
             get {
                 object obj = ResourceManager.GetObject("Oxygen-Icons.org-Oxygen-Apps-preferences-contact-list.256", resourceCulture);
@@ -83,9 +113,40 @@ namespace AttendanceAndEventSchedulingSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pexels_pixabay_326333 {
+            get {
+                object obj = ResourceManager.GetObject("pexels-pixabay-326333", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_transparent_calendar_date_event_month_plan_schedule_xomo_basics_icon_thumbnail {
+            get {
+                object obj = ResourceManager.GetObject("png-transparent-calendar-date-event-month-plan-schedule-xomo-basics-icon-thumbnai" +
+                        "l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pngwing_com {
             get {
                 object obj = ResourceManager.GetObject("pngwing.com", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngwing1 {
+            get {
+                object obj = ResourceManager.GetObject("pngwing1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
